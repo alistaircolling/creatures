@@ -20,6 +20,7 @@ export type World = {
 
 export const isNearby = (a: Position, b: Position, range: number) => {
   const distance = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+  console.log('distance', distance)
   return distance <= range;
 };
 
@@ -29,6 +30,8 @@ export const canCatch = (collector: Collector, creature: Creature, range: number
 }
 
 export const tryToCatch = (collector: Collector, creature: Creature, range: number) => {
+  if (collector.family !== 'collector') return
+  if (creature.family === 'collector') return
   if (canCatch(collector, creature, range)) {
     collector.collection.push(creature);
   }

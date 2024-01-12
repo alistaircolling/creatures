@@ -1,6 +1,8 @@
 import { Collector, Creature, tryToCatch } from ".";
 
+
 test("A collector can catch a creature that is nearby", () => {
+  console.log('A collector can catch a creature that is nearby')
 
   const mrJones: Collector = {
     name: 'Mr Jones',
@@ -14,7 +16,7 @@ test("A collector can catch a creature that is nearby", () => {
     name: 'Tony',
     family: 'flyer',
     species: 'bird',
-    position: { x: 4, y: 8 }
+    position: { x: 0, y: 4 }
   }
 
   const simon: Creature = {
@@ -27,8 +29,10 @@ test("A collector can catch a creature that is nearby", () => {
 
   tryToCatch(mrJones, tony, range);
   tryToCatch(mrJones, simon, range);
+  tryToCatch(mrJones, mrJones, range);
 
   expect(mrJones.collection).toContain(tony)
   expect(mrJones.collection).not.toContain(simon)
+  expect(mrJones.collection).not.toContain(mrJones)
 
 })
